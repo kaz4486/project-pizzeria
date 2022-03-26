@@ -64,6 +64,8 @@
       thisProduct.renderInMenu();
       thisProduct.getElements();
       thisProduct.initAccordion();
+      thisProduct.initOrderForm();
+      thisProduct.processOrder();
       console.log('new Product:', thisProduct);
     }
 
@@ -95,9 +97,11 @@
       thisProduct.form = thisProduct.element.querySelector(
         select.menuProduct.form
       );
+      console.log(thisProduct.form);
       thisProduct.formInputs = thisProduct.form.querySelectorAll(
         select.all.formInputs
       );
+      console.log(thisProduct.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(
         select.menuProduct.cartButton
       );
@@ -136,7 +140,16 @@
         console.log('toggled!');
       });
     }
-  }
+    initOrderForm() {
+      const thisProduct = this;
+      console.log('initOrderForm');
+    }
+
+    processOrder() {
+      const thisProduct = this;
+      console.log('processOrder');
+    }
+  },
 
   const app = {
     initMenu: function () {
