@@ -108,6 +108,9 @@
       thisProduct.priceElem = thisProduct.element.querySelector(
         select.menuProduct.priceElem
       );
+      thisProduct.imageWrapper = thisProduct.element.querySelector(
+        select.menuProduct.imageWrapper
+      );
     }
 
     initAccordion() {
@@ -171,17 +174,29 @@
       // set price to default price
       let price = thisProduct.data.price;
 
+      //find image fit to param - option
+      //let correctImage = thisProduct.data.img.class=paramId + '-' + optionId;
+      //console.log(correctImage);
+
       // for every category (param)...
       for (let paramId in thisProduct.data.params) {
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
-        console.log(paramId, param);
+        console.log('paramId:' + paramId, param);
 
         // for every option in this category
         for (let optionId in param.options) {
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
-          console.log(optionId, option);
+          console.log('optionId:' + optionId, option);
+
+          //find image fit to param - option
+          const categoryOptionSelector = '.' + paramId + '-' + optionId;
+          console.log(categoryOptionSelector);
+          let correctImage = thisProduct.imageWrapper.querySelector(
+            categoryOptionSelector
+          );
+          console.log('correctImage:' + correctImage);
 
           // check if there is param with a name of paramId in formData and if it includes optionId
           const optionSelected = formData[paramId]?.includes(optionId);
@@ -193,6 +208,19 @@
           } else if (option.default && !optionSelected) {
             price -= option.price;
             console.log(option.price + 'total:' + price);
+          }
+
+          // check if option is selected
+          if (correctImage != null) {
+            if (optionSelected) {
+              // add class active
+              correctImage.classList.add(classNames.menuProduct.imageVisible);
+              console.log(optionSelected);
+            } else {
+              correctImage.classList.remove(
+                classNames.menuProduct.imageVisible
+              );
+            }
           }
         }
 
