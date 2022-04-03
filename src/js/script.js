@@ -302,7 +302,7 @@
         amount: thisProduct.amountWidget.value,
         priceSingle: thisProduct.priceSingle,
         price: thisProduct.multiplePrice,
-        params: {},
+        params: thisProduct.prepareCartProductParams(),
       };
       return productSummary;
     }
@@ -345,7 +345,7 @@
           // check if the option is not default
           if (optionSelected) {
             const selectOpt = { [optionId]: option.label };
-            console.log(selectOpt);
+
             Object.assign(params[paramId].options, selectOpt);
           }
         }
@@ -465,6 +465,7 @@
 
       thisCart.dom = {
         toggleTrigger: element.querySelector(select.cart.toggleTrigger),
+        productList: element.querySelector(select.cart.productList),
       };
 
       thisCart.dom.wrapper = element;
@@ -480,6 +481,23 @@
       // const thisCart = this;
 
       console.log('adding product', menuProduct);
+      const thisCart = this;
+
+      /* generate HTML based on template */
+      const generatedHTML = templates.cartProduct(menuProduct);
+      console.log(generatedHTML);
+
+      /* create element DOM using utils.createElementFromHTML*/
+
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+
+      /* find menu container */
+
+      //const menuContainer = document.querySelector(select.containerOf.menu);
+
+      /* add created element to menu*/
+
+      thisCart.dom.productList.appendChild(generatedDOM);
     }
   }
 
