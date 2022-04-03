@@ -202,6 +202,7 @@
       thisProduct.cartButton.addEventListener('click', function (event) {
         event.preventDefault();
         thisProduct.processOrder();
+        thisProduct.addToCart();
       });
     }
 
@@ -266,10 +267,15 @@
         }
       }
       // multiple price by amount
-      price *= thisProduct.amountWidget.value;
+      let multiplePrice = price * thisProduct.amountWidget.value;
       console.log(thisProduct.amountWidget.value);
+      console.log('price:', price);
+      console.log('multiplePrice:', multiplePrice);
+      // add single price
+      thisProduct.priceSingle = price;
+      thisProduct.multiplePrice = multiplePrice;
       // update calculated price in the HTML
-      thisProduct.priceElem.innerHTML = price;
+      thisProduct.priceElem.innerHTML = multiplePrice;
     }
     initAmountWidget() {
       const thisProduct = this;
@@ -280,8 +286,84 @@
         thisProduct.processOrder();
       });
     }
-  }
+    addToCart() {
+      const thisProduct = this;
 
+      app.cart.add(thisProduct.prepareCartProduct());
+      app.cart.add(thisProduct.prepareCartProductParams());
+    }
+
+    prepareCartProduct() {
+      const thisProduct = this;
+
+      const productSummary = {
+        id: thisProduct.id,
+        name: thisProduct.data.name,
+        amount: thisProduct.amountWidget.value,
+        priceSingle: thisProduct.priceSingle,
+        price: thisProduct.multiplePrice,
+        params: {},
+      };
+      return productSummary;
+    }
+
+    prepareCartProductParams() {
+      const thisProduct = this;
+      //console.log('processOrder');
+
+      const formData = utils.serializeFormToObject(thisProduct.form);
+      //console.log('formData:', formData);
+
+      // set price to default price
+      //let price = thisProduct.data.price;
+
+      //find image fit to param - option
+      //let correctImage = thisProduct.data.img.class=paramId + '-' + optionId;
+      //console.log(correctImage);
+
+      const params = {};
+      // for every category (param)...
+      for (let paramId in thisProduct.data.params) {
+        // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
+        const param = thisProduct.data.params[paramId];
+        //console.log('paramId:' + paramId, param);
+
+        // create category param in params const eg. params = { ingredients: { name: 'Ingredients', options: {}}}
+        params[paramId] = {
+          label: param.label,
+          options: {},
+        };
+
+        // for every option in this category
+        for (let optionId in param.options) {
+          // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
+          const option = param.options[optionId];
+          //console.log('optionId:' + optionId, option);
+
+          // check if there is param with a name of paramId in formData and if it includes optionId
+          const optionSelected = formData[paramId]?.includes(optionId);
+          // check if the option is not default
+          if (optionSelected) {
+            const selectOpt = { [optionId]: option.label };
+            console.log(selectOpt);
+            Object.assign(params[paramId].options, selectOpt);
+          }
+        }
+        /*const productParamsSummary = Object.assign({}, objectBody);
+            console.log('productParamsSummary:', productParamsSummary);*/
+
+        /*const productParamsSummary = {
+            [paramId]: {
+              label: param.label,
+              options: {
+                optionId: param.options.label,
+              },
+            },
+          };*/
+      }
+      return params;
+    }
+  }
   class AmountWidget {
     constructor(element) {
       const thisWidget = this;
@@ -393,6 +475,11 @@
       thisCart.dom.toggleTrigger.addEventListener('click', function () {
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
+    }
+    add(menuProduct) {
+      // const thisCart = this;
+
+      console.log('adding product', menuProduct);
     }
   }
 
