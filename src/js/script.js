@@ -488,13 +488,13 @@
       });
 
       //thisCart.event.detail.cartProduct;
-      thisCart.dom.productList.addEventListener(
+      /*thisCart.dom.productList.addEventListener(
         'remove',
         thisCart.remove(CustomEvent.detail.cartProduct)
       );
     }
 
-    remove(element) {
+      /*remove(element) {
       const thisCart = this;
 
       element.dom.wrapper = document.querySelector(
@@ -506,7 +506,7 @@
       for (let product of thisCart.products) {
         const index = thisCart.products.indexOf(product);
         thisCart.products.splice(index, 1);
-      }
+      }*/
     }
     add(menuProduct) {
       // const thisCart = this;
