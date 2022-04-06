@@ -488,25 +488,26 @@
       });
 
       //thisCart.event.detail.cartProduct;
-      /*thisCart.dom.productList.addEventListener(
-        'remove',
-        thisCart.remove(CustomEvent.detail.cartProduct)
-      );
+      thisCart.dom.productList.addEventListener('remove', function (event) {
+        thisCart.remove(event.detail.cartProduct);
+      });
     }
 
-      /*remove(element) {
+    remove(event) {
       const thisCart = this;
-
-      element.dom.wrapper = document.querySelector(
-        select.templateOf.cartProduct
-      );
-      element.dom.wrapper.remove();
-      thisCart.update();
 
       for (let product of thisCart.products) {
         const index = thisCart.products.indexOf(product);
-        thisCart.products.splice(index, 1);
-      }*/
+        console.log('index', index);
+        const deleted = thisCart.products.splice(index, 1);
+        console.log('deleted', deleted);
+
+        console.log(event);
+        let productDiv = event.dom.wrapper;
+        console.log(event.dom.wrapper);
+        productDiv.remove();
+        thisCart.update();
+      }
     }
     add(menuProduct) {
       // const thisCart = this;
