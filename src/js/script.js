@@ -609,6 +609,7 @@
           thisCartProduct.amountWidget.value * thisCartProduct.priceSingle;
 
         thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
+
         /*thisCartProduct.price =
           thisCartProduct.amount * thisCartProduct.priceSingle;
         console.log(thisCartProduct.priceSingle);
