@@ -550,7 +550,7 @@
       let subtotalPrice = 0;
 
       for (let product of thisCart.products) {
-        totalNumber += product.amount;
+        totalNumber += product.amountWidget.value;
         subtotalPrice += product.price;
       }
 
