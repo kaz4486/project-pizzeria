@@ -543,16 +543,18 @@
       const thisCart = this;
 
       for (let product of thisCart.products) {
-        const index = thisCart.products.indexOf(product);
-        console.log('index', index);
-        const deleted = thisCart.products.splice(index, 1);
-        console.log('deleted', deleted);
+        if (event.id == product.id) {
+          const index = thisCart.products.indexOf(product);
+          console.log('index', index);
+          const deleted = thisCart.products.splice(index, 1);
+          console.log('deleted', deleted);
 
-        console.log(event);
-        let productDiv = event.dom.wrapper;
-        console.log(event.dom.wrapper);
-        productDiv.remove();
-        thisCart.update();
+          console.log(event);
+          let productDiv = event.dom.wrapper;
+          console.log(event.dom.wrapper);
+          productDiv.remove();
+          thisCart.update();
+        }
       }
     }
     add(menuProduct) {
