@@ -4,9 +4,6 @@ class AmountWidget {
   constructor(element) {
     const thisWidget = this;
 
-    console.log('AmountWidget:', thisWidget);
-    console.log('constructor arguments:', element);
-
     thisWidget.getElements(element);
 
     thisWidget.setValue(thisWidget.input.value);
@@ -16,7 +13,7 @@ class AmountWidget {
     const thisWidget = this;
 
     thisWidget.element = element;
-    thisWidget.input = thisWidget.element.querySelector(
+    thisWidget.dom.input = thisWidget.element.querySelector(
       select.widgets.amount.input
     );
     thisWidget.linkDecrease = thisWidget.element.querySelector(

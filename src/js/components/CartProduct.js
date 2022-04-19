@@ -12,7 +12,7 @@ class CartProduct {
     thisCartProduct.priceSingle = menuProduct.priceSingle;
 
     thisCartProduct.getElements(element);
-    console.log('thisCartProduct:', thisCartProduct);
+
     thisCartProduct.initAmountWidget();
     thisCartProduct.initActions();
   }

@@ -92,13 +92,12 @@ class Cart {
     for (let product of thisCart.products) {
       if (event.id == product.id) {
         const index = thisCart.products.indexOf(product);
-        console.log('index', index);
-        const deleted = thisCart.products.splice(index, 1);
-        console.log('deleted', deleted);
 
-        console.log(event);
+        // eslint-disable-next-line no-unused-vars
+        const deleted = thisCart.products.splice(index, 1);
+
         let productDiv = event.dom.wrapper;
-        console.log(event.dom.wrapper);
+
         productDiv.remove();
         thisCart.update();
       }
@@ -107,7 +106,6 @@ class Cart {
   add(menuProduct) {
     // const thisCart = this;
 
-    console.log('adding product', menuProduct);
     const thisCart = this;
 
     /* generate HTML based on template */

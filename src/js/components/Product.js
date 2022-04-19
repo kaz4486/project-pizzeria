@@ -177,9 +177,7 @@ class Product {
     }
     // multiple price by amount
     let multiplePrice = price * thisProduct.amountWidget.value;
-    console.log(thisProduct.amountWidget.value);
-    console.log('price:', price);
-    console.log('multiplePrice:', multiplePrice);
+
     // add single price
     thisProduct.priceSingle = price;
     thisProduct.multiplePrice = multiplePrice;
