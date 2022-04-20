@@ -13,14 +13,16 @@ class Booking {
     /* generate HTML based on template */
     const generatedHTML = templates.bookingWidget();
 
+    thisBooking.dom = element;
+
+    element.innerHTML = generatedHTML;
+
     thisBooking.dom = {
-      wrapper: element,
       peopleAmount: element.querySelector(select.booking.peopleAmount),
       hoursAmount: element.querySelector(select.booking.hoursAmount),
     };
 
     console.log(thisBooking.dom.peopleAmount);
-    element.innerHTML = generatedHTML;
   }
   initWidgets() {
     const thisBooking = this;
