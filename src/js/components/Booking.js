@@ -1,6 +1,6 @@
 import { templates, select } from '../settings.js';
 import AmountWidget from './AmountWidget.js';
-import DatePicker from './Classes_v2/DatePicker.js';
+//import DatePicker from './Classes_v2/DatePicker.js';
 
 class Booking {
   constructor(element) {
@@ -41,7 +41,7 @@ class Booking {
 
     thisBooking.dom.hoursAmount.addEventListener('updated', function () {});
 
-    thisBooking.datePickerWidget = new DatePicker(thisBooking.dom.dataPicker);
+    //thisBooking.datePickerWidget = new DatePicker(thisBooking.dom.dataPicker);
   }
 }
 
