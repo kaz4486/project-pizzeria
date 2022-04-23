@@ -173,6 +173,12 @@
       }
 
     }
+    
+    &.clicked {
+      border: 2px  solid green;
+      cursor: pointer;
+      color: lighten($color-dark, 40%);
+    }
   }
 
   [data-table="1"] {

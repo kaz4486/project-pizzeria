@@ -11,6 +11,8 @@ class Booking {
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
+
+    thisBooking.clickedTableInfo = '';
   }
 
   getData() {
@@ -199,6 +201,8 @@ class Booking {
     thisBooking.dom.tables = thisBooking.dom.element.querySelectorAll(
       select.booking.tables
     );
+    thisBooking.dom.tableDiv =
+      thisBooking.dom.element.querySelector('.floor-plan');
 
     //console.log(thisBooking.dom.tables);
     //console.log(thisBooking.dom.peopleAmount);
@@ -228,6 +232,50 @@ class Booking {
     thisBooking.dom.element.addEventListener('updated', function () {
       thisBooking.updateDOM();
     });
+    thisBooking.dom.tableDiv.addEventListener('click', function (event) {
+      thisBooking.initActions(event);
+    });
+  }
+
+  initActions(event) {
+    const thisBooking = this;
+
+    let clickedTableInfo = '';
+    thisBooking.clickedTableInfo += clickedTableInfo;
+
+    if (
+      event.target.classList.contains('table') &
+      !event.target.classList.contains(classNames.booking.tableBooked) &
+      !event.target.classList.contains('clicked')
+    ) {
+      for (let table of thisBooking.dom.tables) {
+        if (table.classList.contains('clicked')) {
+          table.classList.remove('clicked');
+        }
+        event.target.classList.add('clicked');
+      }
+
+      const clickedTableId = event.target.getAttribute('data-table');
+      console.log(clickedTableId);
+      clickedTableInfo += clickedTableId;
+      console.log(clickedTableInfo);
+
+      //clickedTable = clickedTableId;
+    } else if (
+      event.target.classList.contains('table') &
+      event.target.classList.contains(classNames.booking.tableBooked)
+    ) {
+      alert('ten stolik jest zajęty');
+    } else if (
+      event.target.classList.contains('table') &
+      !event.target.classList.contains(classNames.booking.tableBooked) &
+      event.target.classList.contains('clicked')
+    ) {
+      event.target.classList.remove('clicked');
+      clickedTableInfo = '';
+    }
+
+    //console.log(availableTables);
   }
 }
 
