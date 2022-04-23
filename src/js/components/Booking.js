@@ -241,7 +241,14 @@ class Booking {
     const thisBooking = this;
 
     let clickedTableInfo = '';
+    console.log(clickedTableInfo);
     thisBooking.clickedTableInfo += clickedTableInfo;
+
+    thisBooking.dom.element.addEventListener('updated', function () {
+      event.target.classList.remove('clicked');
+      clickedTableInfo = '';
+    });
+    console.log(clickedTableInfo);
 
     if (
       event.target.classList.contains('table') &
