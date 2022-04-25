@@ -35,7 +35,7 @@ export const select = {
     },
     hourPicker: {
       wrapper: '.hour-picker',
-      input: 'input[type="range"]',
+      input: `input[type="range"]`,
       output: '.output',
     },
   },
@@ -43,6 +43,10 @@ export const select = {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
+    phone: `input[name="phone"]`,
+    address: `input[name="address"]`,
+    starters: '.checkbox',
+    submit: '.order-confirmation [type="submit"]',
   },
   nav: {
     links: '.main-nav a',
