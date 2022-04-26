@@ -208,9 +208,8 @@ class Booking {
     thisBooking.dom.tableDiv =
       thisBooking.dom.element.querySelector('.floor-plan');
 
-    thisBooking.dom.startersDiv = thisBooking.dom.element.querySelector(
-      select.booking.starters
-    );
+    thisBooking.dom.startersCheckboxes =
+      thisBooking.dom.element.querySelectorAll(select.booking.starters);
     thisBooking.dom.bookingSubmit = thisBooking.dom.element.querySelector(
       select.booking.submit
     );
@@ -258,20 +257,24 @@ class Booking {
     thisBooking.dom.element.addEventListener('click', function (event) {
       //console.log(event);
       if (event.target.type == 'checkbox' && event.target.name == 'starter') {
-        console.log(event.target.value);
+        //console.log(event.target.value);
 
-        if (event.target.checked) {
-          thisBooking.starters.push(event.target.value);
-          if (
-            (event.target.value == 'bread') &
-            !thisBooking.starters.includes('water')
-          ) {
-            thisBooking.starters.push('water');
-          }
-        } else {
-          const indexOf = thisBooking.starters.indexOf(event.target.value);
-          thisBooking.starters.splice(indexOf, 1);
+        thisBooking.starters = [];
+
+        for (let checkbox of thisBooking.dom.startersCheckboxes) {
+          if (checkbox.checked) {
+            thisBooking.starters.push(event.target.value);
+            if (
+              (event.target.value == 'bread') &
+              !thisBooking.starters.includes('water')
+            ) {
+              thisBooking.starters.push('water');
+            }
+          } /*else {
+            const indexOf = thisBooking.starters.indexOf(event.target.value);
+            thisBooking.starters.splice(indexOf, 1);*/
         }
+
         //console.log(thisBooking.starters);
       }
       const startersUnique = [...new Set(thisBooking.starters)];

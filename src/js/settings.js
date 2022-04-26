@@ -45,7 +45,7 @@ export const select = {
     tables: '.floor-plan .table',
     phone: `input[name="phone"]`,
     address: `input[name="address"]`,
-    starters: '.checkbox',
+    starters: `input[type="checkbox"]`,
     submit: '.order-confirmation [type="submit"]',
   },
   nav: {
