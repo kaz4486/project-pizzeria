@@ -1,5 +1,5 @@
 import { settings, select, classNames, templates } from './settings.js';
-import Product from './components/product.js';
+import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
 import Home from './components/Home.js';
@@ -25,7 +25,6 @@ const app = {
     }
 
     thisApp.activatePage(pageMatchingHash);
-
     for (let link of thisApp.navLinks) {
       link.addEventListener('click', function (event) {
         const clickedElement = this;
