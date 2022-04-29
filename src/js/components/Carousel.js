@@ -1,5 +1,4 @@
-import Home from './Home';
-
+/* eslint-disable no-unused-vars */
 class Carousel {
   constructor(element) {
     const thisCarousel = this;
@@ -15,7 +14,9 @@ class Carousel {
   }
   initPlugin() {
     const thisCarousel = this;
-    const flkty = new Flickity(thisCarousel.element, {
+
+    // eslint-disable-next-line no-undef
+    const fckl = new Flickity(thisCarousel.element, {
       // options
       autoPlay: 3000,
       imagesLoaded: true,

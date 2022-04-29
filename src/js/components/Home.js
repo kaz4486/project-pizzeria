@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import { templates, select, classNames } from '../settings.js';
+import Carousel from './Carousel.js';
 
 class Home {
   constructor(element) {
@@ -77,7 +78,7 @@ class Home {
   initWidgets(element) {
     //const thisHome = this;
 
-    new Flickity(element);
+    new Carousel(element);
   }
 }
 
