@@ -15,8 +15,8 @@ class Carousel {
   initPlugin() {
     const thisCarousel = this;
 
-    // eslint-disable-next-line no-undef
-    const fckl = new Flickity(thisCarousel.element, {
+    
+    thisCarousel.fckl = new Flickity(thisCarousel.element, {
       // options
       autoPlay: 3000,
       imagesLoaded: true,

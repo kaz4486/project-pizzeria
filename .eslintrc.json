@@ -30,6 +30,7 @@
         ]
     },
     "globals": {
-      "Handlebars": "readonly"
+      "Handlebars": "readonly",
+      "Flickity":"readonly"
     }
 }

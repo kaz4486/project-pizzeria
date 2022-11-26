@@ -76,9 +76,9 @@ class Home {
     }
   }
   initWidgets(element) {
-    //const thisHome = this;
+    const thisHome = this;
 
-    new Carousel(element);
+    thisHome.carousel = new Carousel(element);
   }
 }
 
